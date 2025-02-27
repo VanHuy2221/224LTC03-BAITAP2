@@ -1,24 +1,34 @@
 ﻿using System;
 
-class Program
+namespace EnumExample
 {
-    static void ChaoHoi(string ten = "bạn")
+    public enum DayOfWeek
     {
-        Console.WriteLine($"Xin chào, {ten}!");
+        Sunday = 1,
+        Monday = 2,
+        Tuesday = 3,
+        Wednesday = 4,
+        Thursday = 5,
+        Friday = 6,
+        Saturday = 7
     }
 
-    static void Main()
+    class Program
     {
-        Console.Write("Nhập tên của bạn (mặc định: bạn ): ");
-        string ten = Console.ReadLine();
-        
-        if (string.IsNullOrWhiteSpace(ten))
+        static void Main(string[] args)
         {
-            ChaoHoi();
-        }
-        else
-        {
-            ChaoHoi(ten);
+            Console.WriteLine("Nhập số từ 1 đến 7 để chọn ngày trong tuần:");
+            int dayNumber = int.Parse(Console.ReadLine());
+
+            if (dayNumber >= 1 && dayNumber <= 7)
+            {
+                string dayName = Enum.GetName(typeof(DayOfWeek), dayNumber);
+                Console.WriteLine($"Ngày được nhập là: {dayName}");
+            }
+            else
+            {
+                Console.WriteLine("Số nhập vào không hợp lệ! Vui lòng nhập số từ 1 đến 7.");
+            }
         }
     }
 }
